@@ -1,12 +1,9 @@
 import csv
 SwearWords = []
-with open('badwords.csv', 'rb') as f:
-    reader = csv.reader(f, delimiter=',')
-    #SwearWords = list(reader)
-    for row in reader:
-        word = row[0].replace(',', '')
-        word = word.upper()
-        SwearWords.append(word)
+
+SwearWords = [w.upper().strip() 
+              for w in open('badwords.csv', 'r').readlines()]
+
 
 def base36encode(number, alphabet='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'):
     """Converts an integer to a base36 string."""
