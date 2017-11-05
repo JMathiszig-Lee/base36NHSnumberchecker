@@ -27,35 +27,20 @@ def base36encode(number, alphabet='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'):
     return sign + base36
 
 def validateNHSnumber(number):
-    numbers = []
-    for d in str(number):
-        numbers.append(int(d))
+    numbers = [int(c) for c in str(number)]
 
-    #this is a horrible way of doing things, please send a pull request with a more elegant way
-    a = numbers[0] * 10
-    b = numbers[1] * 9
-    c = numbers[2] * 8
-    d = numbers[3] * 7
-    e = numbers[4] * 6
-    f = numbers[5] * 5
-    g = numbers[6] * 4
-    h = numbers[7] * 3
-    i = numbers[8] * 2
+    total = 0
+    for idx in range(0,9):
+        multiplier = 10 - idx
+        total += (numbers[idx] * multiplier)
 
-    tot = a + b + c + d + e + f + g + h + i
-
-    i, modtot = divmod(tot, 11)
+    i, modtot = divmod(total, 11)
     checkdig = 11 - modtot
 
     if checkdig == 11:
         checkdig = 0
 
-    if checkdig == numbers[9]:
-        #nhs number is valid
-        return True
-    else:
-        return False
-
+    return checkdig == numbers[9]
 
 
 def checkNHSnumber(min, max):
