@@ -1,5 +1,3 @@
-import csv
-SwearWords = []
 
 SwearWords = [w.upper().strip() 
               for w in open('badwords.csv', 'r').readlines()]
@@ -34,7 +32,7 @@ def validateNHSnumber(number):
         multiplier = 10 - idx
         total += (numbers[idx] * multiplier)
 
-    i, modtot = divmod(total, 11)
+    _, modtot = divmod(total, 11)
     checkdig = 11 - modtot
 
     if checkdig == 11:
