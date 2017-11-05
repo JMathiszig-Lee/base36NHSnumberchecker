@@ -44,16 +44,13 @@ def validateNHSnumber(number):
 
 
 def checkNHSnumber(min, max):
-    while min < max:
+    for num in range(min, max+1):
         #check is valid NHS number
-        if validateNHSnumber(min) == True:
-            newNHSno = base36encode(min)
+        if validateNHSnumber(num) == True:
+            newNHSno = base36encode(num)
             for i in SwearWords:
                 if i in newNHSno:
-                    print '%d %s %s' % (min, newNHSno, i)
-            min += 1
-        else:
-            min +=1
+                    print '%d %s %s' % (num, newNHSno, i)
 
 lownum = 1952813321
 highnum = 1952813341
